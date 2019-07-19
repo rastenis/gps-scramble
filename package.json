@@ -1,0 +1,18 @@
+{
+  "name": "gps-scramble",
+  "version": "0.0.1",
+  "description": "A tool for controlled randomization of GPS coordinates.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@repo.hepha.co.uk:23344/root/gps-scramble.git"
+  },
+  "keywords": [
+    "gps"
+  ],
+  "author": "Scharkee",
+  "license": "ISC"
+}
