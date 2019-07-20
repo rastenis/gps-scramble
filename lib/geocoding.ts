@@ -5,7 +5,7 @@ const API_BASE = "http://dev.virtualearth.net/REST/v1/";
 /**
  * Function to resolve geo string via Bing Maps' API
  * @param {string} query - Location to query
- * @return {object} Bing response object
+ * @return {Promise<any>} Bing response object wrapped in a promise
  *
  * @example
  *     resolve('Times Square')

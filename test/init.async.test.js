@@ -9,6 +9,10 @@ test("ScramblerAsync parses coordinates", () => {
 });
 
 test("ScramblerAsync parses location by query", async () => {
+  if (!process.env.BING_API_KEY) {
+    return;
+  }
+
   let scrambler = new ScramblerAsync("Times Square");
   await scrambler.init();
 

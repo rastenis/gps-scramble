@@ -22,23 +22,33 @@ export class Scrambler {
     }
   }
 
+  /**
+   * Getter for the X coordinate
+   */
   get x() {
     return this.initial.x;
   }
-
+  /**
+   * Getter for the Y coordinate
+   */
   get y() {
     return this.initial.y;
   }
-
+  /**
+   * Alternative getter for the X coordinate
+   */
   get 0() {
     return this.initial.x;
   }
-
+  /**
+   * Alternative getter for the Y coordinate
+   */
   get 1() {
     return this.initial.y;
   }
 
   /**
+   * Returns a point near the initial point
    * @name near
    * @returns {Location} returns location object
    */
@@ -47,6 +57,7 @@ export class Scrambler {
   }
 
   /**
+   * Returns a point within a specified distance from the initial point
    * @name within
    * @param {number} distance - distance from given initial point
    * @param {string} unit - distance unit
@@ -75,6 +86,10 @@ export class ScramblerAsync {
     }
   }
 
+  /**
+   * Initializes ScramblerAsync, if an initial coordinate fetch is required (when constructed with a query string)
+   * @name init
+   */
   public async init() {
     if (this.initial.x === -1) {
       // resolve location first
@@ -91,22 +106,36 @@ export class ScramblerAsync {
     }
   }
 
+  /**
+   * Getter for the X coordinate
+   */
   get x() {
     return this.initial.x;
   }
-
+  /**
+   * Getter for the Y coordinate
+   */
   get y() {
     return this.initial.y;
   }
-
+  /**
+   * Alternative getter for the X coordinate
+   */
   get 0() {
     return this.initial.x;
   }
-
+  /**
+   * Alternative getter for the Y coordinate
+   */
   get 1() {
     return this.initial.y;
   }
 
+  /**
+   * Returns a point near the initial point
+   * @name near
+   * @returns {Promise<Location>} returns promise-wrapped location object
+   */
   public near() {
     return new Promise(async (res, rej) => {
       // initializing if not initialized
@@ -115,6 +144,23 @@ export class ScramblerAsync {
       }
       // resolving with adjusted coords
       return res(near(this.initial));
+    });
+  }
+
+  /**
+   * Returns a point within a specified distance from the initial point
+   * @name within
+   * @param {number} distance - distance from given initial point
+   * @param {string} unit - distance unit
+   * @returns {Promise<Location>} returns promise-wrapped location object
+   */
+  public within(distance: number, unit: string) {
+    return new Promise(async (res, rej) => {
+      // initializing if not initialized
+      if (this.initial.x === -1) {
+        await this.init();
+      }
+      return within(this.initial, distance, unit);
     });
   }
 }

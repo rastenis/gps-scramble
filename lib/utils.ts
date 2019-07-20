@@ -4,8 +4,18 @@
 const minNear: number = 10;
 const maxNear: number = 100;
 
+/**
+ * constant Earth radius
+ */
 const earthRadius: number = 6.3781e6;
 
+/**
+ * Returns a point within a specified distance from the initial point
+ * @name Location
+ * @param {number} x - X coordinate
+ * @param {number} y - Y coordinate
+ * @param {any|undefined} data - string query object for geocoding
+ */
 export class Location {
   0: number;
   1: number;
@@ -52,10 +62,15 @@ export function normalizeDistance(distance: number, unit: string): number {
       distance = distance * 1000;
       break;
   }
-
   return distance;
 }
 
+/**
+ * Returns a point within a specified distance from the initial locaton
+ * @name within
+ * @param {Location} location - initial location
+ * @returns {Location} returns location object
+ */
 export function within(location: Location, distance: number, unit: string) {
   distance = normalizeDistance(distance, unit);
   return new Location(
@@ -67,6 +82,12 @@ export function within(location: Location, distance: number, unit: string) {
   );
 }
 
+/**
+ * Returns a point near the initial location
+ * @name near
+ * @param {Location} location - initial location
+ * @returns {Location} returns location object
+ */
 export function near(location: Location) {
   let distance = normalizeDistance(getRandomArbitrary(minNear, maxNear), "m");
   return new Location(
