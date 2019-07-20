@@ -74,9 +74,13 @@ export function normalizeDistance(distance: number, unit: string): number {
 export function within(location: Location, distance: number, unit: string) {
   distance = normalizeDistance(distance, unit);
   return new Location(
-    location.x + (distance / earthRadius) * (180 / Math.PI),
+    location.x +
+      (Math.random() >= 0.5 ? -1 : 1) *
+        (distance / earthRadius) *
+        (180 / Math.PI),
     location.y +
-      ((distance / earthRadius) * (180 / Math.PI)) /
+      ((Math.random() >= 0.5 ? -1 : 1) *
+        ((distance / earthRadius) * (180 / Math.PI))) /
         Math.cos((location.x * Math.PI) / 180),
     null
   );
@@ -91,9 +95,13 @@ export function within(location: Location, distance: number, unit: string) {
 export function near(location: Location) {
   let distance = normalizeDistance(getRandomArbitrary(minNear, maxNear), "m");
   return new Location(
-    location.x + (distance / earthRadius) * (180 / Math.PI),
+    location.x +
+      (Math.random() >= 0.5 ? -1 : 1) *
+        (distance / earthRadius) *
+        (180 / Math.PI),
     location.y +
-      ((distance / earthRadius) * (180 / Math.PI)) /
+      ((Math.random() >= 0.5 ? -1 : 1) *
+        ((distance / earthRadius) * (180 / Math.PI))) /
         Math.cos((location.x * Math.PI) / 180),
     null
   );
