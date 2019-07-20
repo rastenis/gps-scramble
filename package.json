@@ -1,6 +1,6 @@
 {
   "name": "gps-scramble",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A tool for controlled randomization of GPS coordinates.",
   "main": "dist/index.js",
   "repository": {
