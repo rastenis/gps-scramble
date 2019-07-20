@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import { resolve } from "./geocoding";
+import { getRandomArbitrary } from "./utils";
+
 dotenv.config();
 
 /**
@@ -63,7 +65,17 @@ export class Scrambler {
    * @returns {Location} returns location object
    */
   public near() {
-    return this.initial;
+    let distance = this.normalizeDistance(
+      getRandomArbitrary(minNear, maxNear),
+      "m"
+    );
+    return new Location(
+      this.initial.x + (distance / earthRadius) * (180 / Math.PI),
+      this.initial.y +
+        ((distance / earthRadius) * (180 / Math.PI)) /
+          Math.cos((this.initial.x * Math.PI) / 180),
+      null
+    );
   }
 
   /**
@@ -75,9 +87,9 @@ export class Scrambler {
   public within(distance: number, unit: string) {
     distance = this.normalizeDistance(distance, unit);
     return new Location(
-      this.initial.x + (100 / earthRadius) * (180 / Math.PI),
+      this.initial.x + (distance / earthRadius) * (180 / Math.PI),
       this.initial.y +
-        ((100 / earthRadius) * (180 / Math.PI)) /
+        ((distance / earthRadius) * (180 / Math.PI)) /
           Math.cos((this.initial.x * Math.PI) / 180),
       null
     );
@@ -93,14 +105,19 @@ export class Scrambler {
     switch (unit) {
       case "mm":
         distance = distance * 0.001;
+        break;
       case "cm":
         distance = distance * 0.01;
+        break;
       case "m":
         distance = distance;
+        break;
       case "dm":
         distance = distance * 10;
+        break;
       case "km":
         distance = distance * 1000;
+        break;
     }
 
     return distance;
