@@ -160,7 +160,7 @@ export class ScramblerAsync {
       if (this.initial.x === -1) {
         await this.init();
       }
-      return within(this.initial, distance, unit);
+      return res(within(this.initial, distance, unit));
     });
   }
 }
