@@ -1,4 +1,4 @@
-import "whatwg-fetch";
+import { fetch } from "whatwg-fetch";
 
 const API_BASE = "http://dev.virtualearth.net/REST/v1/";
 
@@ -11,8 +11,8 @@ const API_BASE = "http://dev.virtualearth.net/REST/v1/";
  *     resolve('Times Square')
  */
 export function resolve(query: string) {
-  if (!process.env.BING_API_KEY) {
+  if (!process.env.API_KEY) {
     throw "Cannot use geocoding without an API key. Refer to readme.md for help with setting it up.";
   }
-  return fetch(`${API_BASE}Locations/${query}?key=${process.env.BING_API_KEY}`);
+  return;
 }

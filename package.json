@@ -27,5 +27,10 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "whatwg-fetch": "^3.0.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ]
   }
 }
