@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import * as geocoding from "./geocoding";
 import { Location, near, within } from "./utils";
+import to from "await-to-js";
 
 dotenv.config();
 
@@ -74,11 +75,30 @@ export class ScramblerAsync {
     }
   }
 
+  get x() {
+    return this.initial.x;
+  }
+
+  get y() {
+    return this.initial.y;
+  }
+
+  get 0() {
+    return this.initial.x;
+  }
+
+  get 1() {
+    return this.initial.y;
+  }
+
   public near() {
     return new Promise(async (res, rej) => {
       if (this.initial.x === -1) {
         // resolve location first
-        let data = await geocoding.resolve(this.initial.data);
+        let [err, data] = await to(geocoding.resolve(this.initial.data));
+        if (err) {
+          return rej(err);
+        }
 
         this.initial = new Location(
           data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
