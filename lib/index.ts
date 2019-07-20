@@ -36,11 +36,26 @@ export class Scrambler {
     if (typeof location === "string") {
       throw "To use geocoding, use ScramblerAsync.";
     } else if (typeof location === "object" && location.length === 2) {
-      console.log("Working with coords ", location);
       this.initial = new Location(location[0], location[1], null);
     } else {
       throw "Incorrect initial location type.";
     }
+  }
+
+  get x() {
+    return this.initial.x;
+  }
+
+  get y() {
+    return this.initial.y;
+  }
+
+  get 0() {
+    return this.initial.x;
+  }
+
+  get 1() {
+    return this.initial.y;
   }
 
   /**
@@ -102,10 +117,8 @@ export class ScramblerAsync {
   constructor(location: string | Array<number>) {
     if (typeof location === "string") {
       // using geocoding
-      console.log("Looking up ", location);
       this.initial = new Location(0, 0, location);
     } else if (typeof location === "object" && location.length === 2) {
-      console.log("Working with coords ", location);
       this.initial = new Location(location[0], location[1], null);
     } else {
       throw "Incorrect initial location type.";
