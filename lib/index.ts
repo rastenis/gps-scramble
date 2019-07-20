@@ -75,6 +75,22 @@ export class ScramblerAsync {
     }
   }
 
+  public async init() {
+    if (this.initial.x === -1) {
+      // resolve location first
+      let [err, data] = await to(geocoding.resolve(this.initial.data));
+      if (err) {
+        throw err;
+      }
+
+      this.initial = new Location(
+        data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
+        data.resourceSets[0].resources[0].geocodePoints[0].coordinates[1],
+        null
+      );
+    }
+  }
+
   get x() {
     return this.initial.x;
   }
@@ -93,18 +109,9 @@ export class ScramblerAsync {
 
   public near() {
     return new Promise(async (res, rej) => {
+      // initializing if not initialized
       if (this.initial.x === -1) {
-        // resolve location first
-        let [err, data] = await to(geocoding.resolve(this.initial.data));
-        if (err) {
-          return rej(err);
-        }
-
-        this.initial = new Location(
-          data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
-          data.resourceSets[0].resources[0].geocodePoints[0].coordinates[1],
-          null
-        );
+        await this.init();
       }
       // resolving with adjusted coords
       return res(near(this.initial));
