@@ -17,7 +17,7 @@ $ npm install gps-scramble
 
 ```js
 const scrambler = require("gps-scramble");
-console.log(scrambler.init(40.758896, -73.98513).withinDistance(100, "m")); // within a 100 meters from Times Square
+console.log(scrambler.init([40.758896, -73.98513]).withinDistance(100, "m")); // within a 100 meters from Times Square
 console.log(scrambler.init("Times Square").withinDistance(1, "km")); // somewhere in New York
 ```
 

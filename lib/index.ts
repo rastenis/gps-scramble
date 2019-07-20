@@ -5,8 +5,10 @@ dotenv.config();
 /**
  * configuration for near functions of both Scrambler and ScramblerAsync
  */
-let minNear: number = 10;
-let maxNear: number = 100;
+const minNear: number = 10;
+const maxNear: number = 100;
+
+const earthRadius: number = 6.3781e6;
 
 class Location {
   0: number;
@@ -47,6 +49,46 @@ export class Scrambler {
    */
   public near() {
     return this.initial;
+  }
+
+  /**
+   * @name within
+   * @param {number} distance - distance from given initial point
+   * @param {string} unit - distance unit
+   * @returns {Location} returns location object
+   */
+  public within(distance: number, unit: string) {
+    distance = this.normalizeDistance(distance, unit);
+    return new Location(
+      this.initial.x + (100 / earthRadius) * (180 / Math.PI),
+      this.initial.y +
+        ((100 / earthRadius) * (180 / Math.PI)) /
+          Math.cos((this.initial.x * Math.PI) / 180),
+      null
+    );
+  }
+
+  /**
+   * @name normalizeDistance
+   * @param {number} distance - distance from given initial point
+   * @param {string} unit - distance unit
+   * @returns {number} returns distance normalized to meters
+   */
+  public normalizeDistance(distance: number, unit: string): number {
+    switch (unit) {
+      case "mm":
+        distance = distance * 0.001;
+      case "cm":
+        distance = distance * 0.01;
+      case "m":
+        distance = distance;
+      case "dm":
+        distance = distance * 10;
+      case "km":
+        distance = distance * 1000;
+    }
+
+    return distance;
   }
 }
 

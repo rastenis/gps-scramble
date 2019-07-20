@@ -1,7 +1,8 @@
 let { Scrambler, ScramblerAsync } = require("../");
 
 test("Scrambler resolves coordinates", () => {
-  console.log(new Scrambler([40.758, -73.9855]));
+  let scrambler = new Scrambler([40.758, -73.9855]);
+
   return;
 });
 
