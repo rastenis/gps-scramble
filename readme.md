@@ -1,5 +1,7 @@
 # gps-scramble
 
+[![npm version](http://img.shields.io/npm/v/gps-scramble.svg?style=flat)](https://npmjs.org/package/gps-scramble "View this project on npm")
+
 A tool for controlled randomization/spoofing of GPS coordinates.
 
 ## Features
