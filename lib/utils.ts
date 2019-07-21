@@ -129,16 +129,18 @@ export async function nearbyEstablishment(location: Location) {
   let [err, data] = await to(
     resolveEstablishments(`${location.x},${location.y}`)
   );
+
   if (err) {
     throw err;
   }
 
-  let randomEstablishment =
-    data.resourceSets[0].resources[0].businessesAtLocation[getRandomInt(0, 5)];
-
   return new Location(
-    randomEstablishment.businessAddress.latitude,
-    randomEstablishment.businessAddress.longitude,
+    data.resourceSets[0].resources[0].businessesAtLocation[
+      getRandomInt(0, 5)
+    ].businessAddress.latitude,
+    data.resourceSets[0].resources[0].businessesAtLocation[
+      getRandomInt(0, 5)
+    ].businessAddress.longitude,
     null
   );
 }

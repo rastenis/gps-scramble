@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "ssh://git@repo.hepha.co.uk:23344/root/gps-scramble.git"
+    "url": "https://github.com/Scharkee/gps-scramble.git"
   },
   "keywords": [
     "gps"
@@ -13,16 +13,21 @@
   "author": "Scharkee",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "test": "jest --config jest.config.js",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "license": "MIT",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.8",
+    "coveralls": "^3.0.5",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^2.7.2"
+    "typescript": "^3.6.0-dev.20190720"
   },
   "dependencies": {
     "await-to-js": "^2.1.1",
