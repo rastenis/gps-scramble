@@ -10,7 +10,7 @@ const API_BASE = "http://dev.virtualearth.net/REST/v1/";
  * @example
  *     resolve('Times Square')
  */
-export function resolve(query: string): Promise<any> {
+export function resolveLocation(query: string): Promise<any> {
   return new Promise((res, rej) => {
     if (!process.env.BING_API_KEY) {
       return rej(
@@ -20,6 +20,32 @@ export function resolve(query: string): Promise<any> {
 
     return axios
       .get(`${API_BASE}Locations/${query}?key=${process.env.BING_API_KEY}`)
+      .then(r => {
+        return res(r.data);
+      })
+      .catch(e => {
+        return rej(e);
+      });
+  });
+}
+
+export function resolveEstablishments(
+  query: string,
+  radius: number = 2
+): Promise<any> {
+  return new Promise((res, rej) => {
+    if (!process.env.BING_API_KEY) {
+      return rej(
+        "Cannot use geocoding without an API key. Refer to readme.md for help with setting it up."
+      );
+    }
+
+    return axios
+      .get(
+        `${API_BASE}LocationRecog/${query}?radius=${radius}&top=5&distanceunit=km&key=${
+          process.env.BING_API_KEY
+        }`
+      )
       .then(r => {
         return res(r.data);
       })

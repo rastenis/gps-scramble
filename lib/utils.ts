@@ -1,3 +1,6 @@
+import { resolveEstablishments } from "./geocoding";
+import to from "await-to-js";
+
 /**
  * configuration for near functions of both Scrambler and ScramblerAsync
  */
@@ -36,6 +39,15 @@ export class Location {
  */
 export function getRandomArbitrary(min: number, max: number): number {
   return Math.random() * (max - min) + min;
+}
+
+/**
+ * Returns a random integer between min (inclusive) and max (exclusive)
+ */
+export function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
 /**
@@ -103,6 +115,30 @@ export function near(location: Location) {
       ((Math.random() >= 0.5 ? -1 : 1) *
         ((distance / earthRadius) * (180 / Math.PI))) /
         Math.cos((location.x * Math.PI) / 180),
+    null
+  );
+}
+
+/**
+ * Returns a point near the initial location
+ * @name near
+ * @param {Location} location - initial location
+ * @returns {Location} returns location object
+ */
+export async function nearbyEstablishment(location: Location) {
+  let [err, data] = await to(
+    resolveEstablishments(`${location.x},${location.y}`)
+  );
+  if (err) {
+    throw err;
+  }
+
+  let randomEstablishment =
+    data.resourceSets[0].resources[0].businessesAtLocation[getRandomInt(0, 5)];
+
+  return new Location(
+    randomEstablishment.businessAddress.latitude,
+    randomEstablishment.businessAddress.longitude,
     null
   );
 }
