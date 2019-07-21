@@ -1,11 +1,12 @@
 # gps-scramble
 
-A tool for controlled randomization of GPS coordinates.
+A tool for controlled randomization/spoofing of GPS coordinates.
 
 ## Features
 
-- Generate similar coordinates within [Distance, Street, City, Country]
-- Location name based coordinate generation (geocoding)
+- Generate similar coordinates within a distance of given coordinates
+- Location name based coordinate generation (geocoding), resolve coordinates by location name
+- Generate the coordinates of a random establishment near the given coordinates
 
 ## Install
 
@@ -33,6 +34,9 @@ console.log(location.x, location.y); // randomized location within 100 meters fr
 
 location = await scrambler.near();
 console.log(location.x, location.y); // randomized location near Times Square
+
+location = await scrambler.nearbyEstablishment();
+console.log(location.x, location.y); // randomized location of a business near Times Square
 ```
 
 ## Geocoding support
