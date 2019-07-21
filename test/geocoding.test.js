@@ -30,7 +30,7 @@ test("Nearby establishment resolving", async () => {
   if (!process.env.BING_API_KEY) {
     return;
   }
-  let result = await resolveEstablishments("Eiffel Tower");
+  let result = await resolveEstablishments("48.8584,2.2945");
 
   expect(
     result.resourceSets[0].resources[0].businessesAtLocation[0].businessAddress
