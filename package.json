@@ -17,7 +17,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "test": "jest --config jest.config.js",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "license": "MIT",
   "devDependencies": {
