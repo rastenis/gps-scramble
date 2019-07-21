@@ -16,30 +16,30 @@ test("Location resolving", async () => {
   if (!process.env.BING_API_KEY) {
     return;
   }
-  let result = await resolveLocation("Eiffel Tower");
+  let result = await resolveLocation("Times Square");
 
   expect(
     result.resourceSets[0].resources[0].geocodePoints[0].coordinates[0]
-  ).toBeCloseTo(48.8584, 1);
+  ).toBeCloseTo(40.7588, 1);
   expect(
     result.resourceSets[0].resources[0].geocodePoints[0].coordinates[1]
-  ).toBeCloseTo(2.2945, 1);
+  ).toBeCloseTo(-73.98513, 1);
 });
 
 test("Nearby establishment resolving", async () => {
   if (!process.env.BING_API_KEY) {
     return;
   }
-  let result = await resolveEstablishments("48.8584,2.2945");
+  let result = await resolveEstablishments("40.758896, -73.98513");
 
   expect(
     result.resourceSets[0].resources[0].businessesAtLocation[0].businessAddress
       .latitude
-  ).toBeCloseTo(48.8584, 1);
+  ).toBeCloseTo(40.7588, 1);
   expect(
     result.resourceSets[0].resources[0].businessesAtLocation[0].businessAddress
       .longitude
-  ).toBeCloseTo(2.2945, 1);
+  ).toBeCloseTo(-73.98513, 1);
 });
 
 test("Location resolving failure without API key", async () => {
@@ -49,7 +49,7 @@ test("Location resolving failure without API key", async () => {
     resolveLocation: resolveLocationNoAPIKey
   } = require("../dist/geocoding");
 
-  let [err, result] = await to(resolveLocationNoAPIKey("Eiffel Tower"));
+  let [err, result] = await to(resolveLocationNoAPIKey("Times Square"));
   expect(err).toBeTruthy();
 });
 
@@ -60,7 +60,7 @@ test("Nearby establishment resolving failure without API key", async () => {
     resolveEstablishments: resolveEstablishmentsNoAPIKey
   } = require("../dist/geocoding");
 
-  let [err, result] = await to(resolveEstablishmentsNoAPIKey("Eiffel Tower"));
+  let [err, result] = await to(resolveEstablishmentsNoAPIKey("Times Square"));
   expect(err).toBeTruthy();
 });
 
@@ -71,7 +71,7 @@ test("Location resolving failure without valid API key", async () => {
     resolveLocation: resolveLocationNoAPIKey
   } = require("../dist/geocoding");
 
-  let [err, result] = await to(resolveLocationNoAPIKey("Eiffel Tower"));
+  let [err, result] = await to(resolveLocationNoAPIKey("Times Square"));
   expect(err).toBeTruthy();
 });
 
@@ -82,6 +82,6 @@ test("Nearby establishment resolving failure without valid API key", async () =>
     resolveEstablishments: resolveEstablishmentsNoAPIKey
   } = require("../dist/geocoding");
 
-  let [err, result] = await to(resolveEstablishmentsNoAPIKey("Eiffel Tower"));
+  let [err, result] = await to(resolveEstablishmentsNoAPIKey("Times Square"));
   expect(err).toBeTruthy();
 });
