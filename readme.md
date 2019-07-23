@@ -3,6 +3,7 @@
 [![npm version](http://img.shields.io/npm/v/gps-scramble.svg?style=flat)](https://npmjs.org/package/gps-scramble "View this project on npm")
 [![Status](https://travis-ci.org/scharkee/gps-scramble.svg?branch=master)](https://travis-ci.org/scharkee/gps-scramble)
 [![Coverage Status](https://coveralls.io/repos/github/Scharkee/gps-scramble/badge.svg?branch=master)](https://coveralls.io/github/Scharkee/gps-scramble?branch=master)
+[![David](https://img.shields.io/david/scharkee/gps-scramble.svg)](https://david-dm.org/scharkee/gps-scramble)
 
 A tool for controlled randomization/spoofing of GPS coordinates.
 
@@ -81,3 +82,9 @@ scrambler.x; // initial X coordinate
 scrambler.y; // initial Y coordinate
 // ...
 ```
+
+### Support
+
+Submit bugs and requests through the project's issue tracker:
+
+[![Issues](http://img.shields.io/github/issues/Scharkee/gps-scramble.svg)](https://github.com/Scharkee/gps-scramble/issues)
