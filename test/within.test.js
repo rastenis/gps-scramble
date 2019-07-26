@@ -15,6 +15,15 @@ test("Scrambler produces a point within a given distance", async () => {
   let scrambler = new ScramblerAsync("Times Square");
   let location = await scrambler.within(100, "m");
 
+  // testing already intitated nearbyEstablishment
+  let anotherLocation = await scrambler.within(50, "m");
+
   expect(location.x).toBeCloseTo(scrambler.x, 1);
   expect(location.y).toBeCloseTo(scrambler.y, 1);
+
+  // must not return the same thing
+  expect(location).not.toMatchObject(anotherLocation);
+
+  expect(anotherLocation.x).toBeCloseTo(scrambler.x, 1);
+  expect(anotherLocation.y).toBeCloseTo(scrambler.y, 1);
 });

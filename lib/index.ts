@@ -91,23 +91,21 @@ export class ScramblerAsync {
    * @name init
    */
   public async init() {
-    if (this.initial.x === -1) {
-      // resolve location first
-      let [err, data] = await to(geocoding.resolveLocation(this.initial.data));
-      if (err) {
-        throw err;
-      }
-
-      if (!data.resourceSets[0].resources.length) {
-        throw "Could not resolve nearby establishments: no results.";
-      }
-
-      this.initial = new Location(
-        data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
-        data.resourceSets[0].resources[0].geocodePoints[0].coordinates[1],
-        null
-      );
+    // resolve location first
+    let [err, data] = await to(geocoding.resolveLocation(this.initial.data));
+    if (err) {
+      throw err;
     }
+
+    if (!data.resourceSets[0].resources.length) {
+      throw "Could not resolve nearby establishments: no results.";
+    }
+
+    this.initial = new Location(
+      data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
+      data.resourceSets[0].resources[0].geocodePoints[0].coordinates[1],
+      null
+    );
   }
 
   /**
