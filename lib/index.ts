@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import * as geocoding from "./geocoding";
-import { Location, near, within } from "./utils";
+import { Location, near, within, nearbyEstablishment } from "./utils";
 import to from "await-to-js";
 
 dotenv.config();
@@ -166,7 +166,7 @@ export class ScramblerAsync {
         }
       }
       // resolving with adjusted coords
-      return res(near(this.initial));
+      return res(nearbyEstablishment(this.initial));
     });
   }
 

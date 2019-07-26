@@ -85,3 +85,18 @@ test("Nearby establishment resolving failure without valid API key", async () =>
   let [err, result] = await to(resolveEstablishmentsNoAPIKey("Times Square"));
   expect(err).toBeTruthy();
 });
+
+test("Geocoding initialization failure without valid API key", async () => {
+  process.env.BING_API_KEY = "invalidKey";
+
+  let { ScramblerAsync: ScramblerAsyncNoAPIKey } = require("../dist/index");
+
+  let error = null;
+  try {
+    let l = new ScramblerAsyncNoAPIKey("Times Square");
+    await l.init();
+  } catch (e) {
+    error = e;
+  }
+  expect(error).toBeTruthy();
+});
