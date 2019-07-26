@@ -98,6 +98,10 @@ export class ScramblerAsync {
         throw err;
       }
 
+      if (!data.resourceSets[0].resources.length) {
+        throw "Could not resolve nearby establishments: no results.";
+      }
+
       this.initial = new Location(
         data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0],
         data.resourceSets[0].resources[0].geocodePoints[0].coordinates[1],
@@ -156,7 +160,10 @@ export class ScramblerAsync {
     return new Promise(async (res, rej) => {
       // initializing if not initialized
       if (this.initial.x === -1) {
-        await this.init();
+        let [err] = await to(this.init());
+        if (err) {
+          return rej(err);
+        }
       }
       // resolving with adjusted coords
       return res(near(this.initial));
