@@ -16,7 +16,7 @@ A tool for controlled randomization/spoofing of GPS coordinates.
 ## Install
 
 ```console
-$ npm install gps-scramble
+npm install gps-scramble
 ```
 
 ## Usage
@@ -56,6 +56,8 @@ The key must be loaded as an enviromental variable named `BING_API_KEY`.
 Supported units are: "mm" - milimeters, "cm" - centimeters, "m" - meters (default), "dm" - decimeters, "km" - kilometers.
 
 ## API
+
+[API reference docs.](https://scharkee.github.io/gps-scramble/)
 
 All gps-scrambler methods return Location objects, which contain coordinates.
 
