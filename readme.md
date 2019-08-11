@@ -15,8 +15,8 @@ A tool for controlled randomization/spoofing of GPS coordinates.
 
 ## Install
 
-```console
-npm install gps-scramble
+```bash
+$ npm install gps-scramble
 ```
 
 ## Usage
