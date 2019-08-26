@@ -24,24 +24,36 @@ export class Scrambler {
 
   /**
    * Getter for the X coordinate
+   *
+   * @readonly
+   * @memberof Scrambler
    */
   get x() {
     return this.initial.x;
   }
   /**
    * Getter for the Y coordinate
+   *
+   * @readonly
+   * @memberof Scrambler
    */
   get y() {
     return this.initial.y;
   }
   /**
    * Alternative getter for the X coordinate
+   *
+   * @readonly
+   * @memberof Scrambler
    */
   get 0() {
     return this.initial.x;
   }
   /**
    * Alternative getter for the Y coordinate
+   *
+   * @readonly
+   * @memberof Scrambler
    */
   get 1() {
     return this.initial.y;
@@ -88,7 +100,8 @@ export class ScramblerAsync {
 
   /**
    * Initializes ScramblerAsync, if an initial coordinate fetch is required (when constructed with a query string)
-   * @name init
+   *
+   * @memberof ScramblerAsync
    */
   public async init() {
     // resolve location first
@@ -110,24 +123,36 @@ export class ScramblerAsync {
 
   /**
    * Getter for the X coordinate
+   *
+   * @readonly
+   * @memberof ScramblerAsync
    */
   get x() {
     return this.initial.x;
   }
   /**
    * Getter for the Y coordinate
+   *
+   * @readonly
+   * @memberof ScramblerAsync
    */
   get y() {
     return this.initial.y;
   }
   /**
    * Alternative getter for the X coordinate
+   *
+   * @readonly
+   * @memberof ScramblerAsync
    */
   get 0() {
     return this.initial.x;
   }
   /**
    * Alternative getter for the Y coordinate
+   *
+   * @readonly
+   * @memberof ScramblerAsync
    */
   get 1() {
     return this.initial.y;
@@ -137,8 +162,9 @@ export class ScramblerAsync {
    * Returns a point near the initial point
    * @name near
    * @returns {Promise<Location>} returns promise-wrapped location object
+   * @memberof ScramblerAsync
    */
-  public near() {
+  public near(): Promise<Location> {
     return new Promise(async (res, rej) => {
       // initializing if not initialized
       if (this.initial.x === -1) {
@@ -154,7 +180,7 @@ export class ScramblerAsync {
    * @name nearbyEstablishment
    * @returns {Promise<Location>} returns promise-wrapped location object
    */
-  public nearbyEstablishment() {
+  public nearbyEstablishment(): Promise<Location> {
     return new Promise(async (res, rej) => {
       // initializing if not initialized
       if (this.initial.x === -1) {
@@ -175,7 +201,7 @@ export class ScramblerAsync {
    * @param {string} unit - distance unit
    * @returns {Promise<Location>} returns promise-wrapped location object
    */
-  public within(distance: number, unit: string) {
+  public within(distance: number, unit: string): Promise<Location> {
     return new Promise(async (res, rej) => {
       // initializing if not initialized
       if (this.initial.x === -1) {
