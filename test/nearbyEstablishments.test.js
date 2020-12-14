@@ -24,5 +24,5 @@ test("ScramblerAsync fails to resolve coords for an establishment in a restricte
 
   let scrambler = new ScramblerAsync("p3erf-91384hf-1394fh7813-49fh7");
   let [err, location] = await to(scrambler.nearbyEstablishment());
-  expect(err).toBe("Could not resolve nearby establishments: no results.");
+  expect(err).toContain("no results");
 });
